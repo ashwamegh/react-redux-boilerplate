@@ -2,8 +2,8 @@
 import { combineReducers } from 'redux';
 
 // Local Reducers
-
+import { incrementCounterReducer } from './counterReducer';
 
 export default combineReducers({
-  novalue: true,
+  count: incrementCounterReducer,
 });
