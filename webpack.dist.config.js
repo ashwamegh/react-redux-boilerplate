@@ -19,13 +19,13 @@ module.exports = {
     extensions: ['*', '.js', '.jsx', '.json'],
   },
   devtool: 'source-map', // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool
-  entry: path.resolve(__dirname,'src/index.js'),
+  entry: path.resolve(__dirname, 'src/index.js'),
 
   target: 'web', // necessary per https://webpack.github.io/docs/testing.html#compile-and-test
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    filename: '[name][hash].js',
+    filename: '[name].[hash].js',
   },
   plugins: [
     // Includes values declared in .env file
@@ -35,13 +35,13 @@ module.exports = {
     }),
 
     // Hash the files using MD5 so that their names change when the content changes.
-    // new WebpackMd5Hash(),
+    new WebpackMd5Hash(),
 
     // Tells React to build in prod mode. https://facebook.github.io/react/downloads.html
     new webpack.DefinePlugin(GLOBALS),
 
     // Generate an external css file with a hash in the filename
-    new ExtractTextPlugin('[name][hash].css'),
+    new ExtractTextPlugin('[name].[hash].css'),
     new webpack.ProvidePlugin({
       React: 'react',
     }),
@@ -68,11 +68,11 @@ module.exports = {
       minRatio: 0.8,
     }),
 
-        // Generate HTML file that contains references to generated bundles. See here for how this works: https://github.com/ampedandwired/html-webpack-plugin#basic-usage
+    // Generate HTML file that contains references to generated bundles. See here for how this works: https://github.com/ampedandwired/html-webpack-plugin#basic-usage
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.join(__dirname, 'src', 'index.html'),
-          // favicon: 'src/favicon.ico',
+      // favicon: 'src/favicon.ico',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -86,10 +86,10 @@ module.exports = {
         minifyURLs: false,
       },
       inject: true,
-          // Note that you can add custom options here if you need to handle other custom logic in index.html
-          // To track JavaScript errors via TrackJS, sign up for a free trial at TrackJS.com and enter your token below.
+      // Note that you can add custom options here if you need to handle other custom logic in index.html
+      // To track JavaScript errors via TrackJS, sign up for a free trial at TrackJS.com and enter your token below.
       trackJSToken: '',
-    })
+    }),
   ],
   module: {
     rules: [

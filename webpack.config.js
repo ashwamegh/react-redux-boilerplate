@@ -20,13 +20,13 @@ module.exports = {
     extensions: ['*', '.js', '.jsx', '.json'],
   },
   devtool: 'source-map', // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool
-  entry: path.resolve(__dirname,'src/index.js'),
+  entry: path.resolve(__dirname, 'src/index.js'),
 
   target: 'web', // necessary per https://webpack.github.io/docs/testing.html#compile-and-test
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    filename: '[name][hash].js',
+    filename: '[name].[hash].js',
   },
   plugins: [
     // Includes values declared in .env file
@@ -35,13 +35,13 @@ module.exports = {
       safe: false, // load .env.example (defaults to "false" which does not use dotenv-safe)
     }),
     // Hash the files using MD5 so that their names change when the content changes.
-    // new WebpackMd5Hash(),
+    new WebpackMd5Hash(),
 
     // Tells React to build in prod mode. https://facebook.github.io/react/downloads.html
     new webpack.DefinePlugin(GLOBALS),
 
     // Generate an external css file with a hash in the filename
-    new ExtractTextPlugin('[name][hash].css'),
+    new ExtractTextPlugin('[name].[hash].css'),
     new webpack.ProvidePlugin({
       React: 'react',
     }),
@@ -67,7 +67,7 @@ module.exports = {
       // To track JavaScript errors via TrackJS, sign up for a free trial at TrackJS.com and enter your token below.
       trackJSToken: '',
     }),
-    
+
     // Minify JS
     // new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
 
