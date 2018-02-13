@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 class App extends Component {
   render() {
     return (
-      <h1>Hey! Shashank.</h1>
+      <h1>Let's, Rock n Roll!</h1>
     );
   }
 }
